@@ -1,0 +1,138 @@
+/* typography.css - cleaner type + slightly smaller components. Loaded LAST, so it overrides base.css
+   without editing it. Delete this file (and its <link>) to go back to the previous look.
+
+   FONT: "Plus Jakarta Sans" for Latin text, with Mukta behind it so Hindi / Devanagari still renders
+   in a matching weight. Yatra One is kept only for the STREATOS wordmark and the product label. */
+
+:root{
+  --font-body:"Plus Jakarta Sans","Mukta",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-mono:var(--font-body);              /* small uppercase labels now use the same clean sans */
+}
+
+/* ---------- base scale ---------- */
+body{font-size:15.5px;line-height:1.65;letter-spacing:-.003em}
+h1,h2,h3,h4{font-weight:700;line-height:1.18;letter-spacing:-.02em}
+p{max-width:62ch}
+section{padding-block:clamp(44px,6vw,72px)}
+
+/* small uppercase labels (like "OPTIMIZED DOMESTIC SHIPPING") */
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em}
+.strip .cap,.mobile h4,footer h4,.rail .t,.mock .t,.lang-note{font-size:11.5px;font-weight:600;letter-spacing:.1em}
+
+/* ---------- section headings ---------- */
+.head{gap:10px;max-width:700px}
+.head h2{font-size:clamp(24px,3vw,36px)}
+.head p{font-size:16.5px;line-height:1.6}
+.story h2{font-size:clamp(24px,3.1vw,36px)}
+.story p{font-size:16px}
+.panel h3{font-size:clamp(21px,2.5vw,28px)}
+.panel .txt p{font-size:16px}
+.ctaband h2{font-size:clamp(23px,3.1vw,36px)}
+.ctaband p{font-size:16.5px}
+
+/* ---------- buttons: smaller, tighter ---------- */
+.btn{font-size:14.5px;font-weight:600;padding:10px 20px;gap:7px;border-width:1.5px;letter-spacing:-.005em}
+.btn.sm{font-size:13.5px;padding:8px 16px}
+.btn .i,.link .i{width:16px;height:16px}
+.link{font-size:14.5px;font-weight:600}
+.tools .btn,.tools .btn.cta{font-size:14.5px;padding:9px 18px}
+.tab{font-size:14px;font-weight:600;padding:8px 18px}
+.tablist{padding:4px}
+
+/* ---------- header bar ---------- */
+.announce{font-size:13px;padding:7px 14px;font-weight:600}
+.navpill{padding:6px 10px 6px 14px;border-radius:16px}
+.brand{font-size:22px}
+.brand svg{width:24px;height:24px}
+.mm-btn,.plain{font-size:14.5px;font-weight:600;padding:8px 12px}
+.mm-btn .i{width:14px;height:14px}
+.util .lang-btn,.util .icon-btn{font-size:14.5px;padding:8px 10px}
+.lang-btn .i,.icon-btn .i{width:18px;height:18px}
+.lang-btn .chev{width:14px;height:14px}
+.burger{width:38px;height:38px}
+.mm-panel{border-radius:14px}
+.mm-panel a{padding:10px;grid-template-columns:34px minmax(0,1fr);gap:2px 12px}
+.mm-panel .ic{width:34px;height:34px;border-radius:9px}
+.mm-panel b{font-size:14.5px}
+.mm-panel span.d{font-size:13px}
+.lang-panel{border-radius:14px;padding:10px}
+.lang-list li{padding:7px 30px 7px 10px}
+.lang-list li b{font-size:15px}
+.lang-list li span{font-size:12px}
+.lang-foot{font-size:12px}
+.mobile a{font-size:15px}
+
+/* ---------- hero ---------- */
+.scene{min-height:clamp(540px,76vh,680px);padding-top:120px;padding-bottom:56px}
+.scene h1{font-size:clamp(30px,4.3vw,52px);font-weight:700;line-height:1.1;letter-spacing:-.028em}
+.scene .lead{font-size:clamp(15.5px,1.4vw,17.5px);line-height:1.6;margin-top:16px}
+.scene .cta{margin-top:22px;gap:10px}
+.scene .copy{max-width:600px}
+.revbadge{font-size:14px;margin-bottom:16px}
+.revbadge .av span{width:32px;height:32px}
+.revbadge .av .i{width:16px;height:16px}
+
+/* ---------- strip + stats ---------- */
+.strip{padding-block:16px;margin-top:clamp(32px,5vw,56px)}
+.track span{font-family:var(--font-body);font-weight:600;font-size:18px;padding-inline:22px;gap:44px}
+.stats{padding-block:clamp(34px,5vw,52px)}
+.stat{padding-left:16px;border-left-width:2px}
+.stat b{font-family:var(--font-body);font-weight:800;font-size:clamp(34px,4.6vw,52px);letter-spacing:-.03em}
+.stat span{font-size:14.5px}
+
+/* ---------- cards ---------- */
+.cards{gap:16px;margin-top:34px}
+.card{padding:20px 20px 18px;border-radius:12px;gap:9px}
+.card .ic{width:40px;height:40px;border-radius:10px}
+.card .ic .i{width:22px;height:22px}
+.card h3{font-size:17.5px;font-weight:700}
+.card p{font-size:14.5px;line-height:1.55}
+.card .link{padding-top:2px}
+.card.tilt .ic,.card.tilt h3{transform:none;transition:transform .2s}      /* depth only while hovering, keeps text aligned */
+.card.tilt:hover .ic{transform:translateZ(26px)}
+.card.tilt:hover h3{transform:translateZ(16px)}
+
+/* ---------- process, story, loop, faq ---------- */
+.steps{margin-top:38px}
+.steps li .dot{width:38px;height:38px;font-size:12.5px;font-weight:700}
+.steps li::before{top:18px;left:38px}
+.steps b{font-size:16px;margin-top:4px}
+.steps span.s{font-size:13.5px}
+.mock{padding:16px;border-radius:12px;gap:11px}
+.mock .pill{font-size:13px}
+.mock .line{font-size:14px}
+.mock .line b{font-size:12px}
+.path span{font-size:11.5px;font-weight:600;padding:4px 10px}
+.rail{padding:20px 20px;border-radius:12px}
+.rail li{font-size:15.5px;padding-bottom:16px}
+.cycle li{padding:18px 16px 20px;border-radius:12px}
+.cycle b{font-size:18px}
+.cycle span{font-size:14.5px}
+.loopback{font-size:12px}
+.faq{margin-top:32px}
+.faq summary{font-size:16px;padding:17px 4px}
+.faq summary .i{width:20px;height:20px}
+.faq details p{font-size:15px;padding-bottom:18px}
+
+/* ---------- product label card + 3D stage ---------- */
+.pack{border-radius:14px}
+.pack-top{font-size:18px;padding:10px 16px}
+.pack h2{font-size:clamp(26px,3.5vw,34px)}
+.pack .origin{font-size:12.5px}
+.scan{font-size:11px}
+.stage3d{border-radius:18px;max-height:540px}
+
+/* ---------- footer ---------- */
+footer{padding-block:44px 28px}
+footer ul{gap:8px;font-size:14.5px}
+footer .about p{font-size:14.5px}
+.fmeta{font-size:12px}
+
+/* ---------- phones: a touch smaller still ---------- */
+@media (max-width:640px){
+  body{font-size:15px}
+  .scene h1{font-size:clamp(27px,8vw,34px)}
+  .head h2,.story h2,.ctaband h2{font-size:clamp(22px,6.6vw,28px)}
+  .btn{padding:9px 18px}
+  .stat b{font-size:38px}
+}

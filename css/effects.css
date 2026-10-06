@@ -1,0 +1,67 @@
+/* effects.css - everything NEW lives here, so base.css stays yours.
+   Every effect is progressive: no JS / reduced motion / no WebGL => the original site shows. */
+
+/* ---------- 1. Scroll progress bar (pure CSS, scroll-driven animation) ---------- */
+@supports (animation-timeline: scroll()) {
+  .progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:200;background:var(--honey);
+    transform-origin:0 50%;scale:0 1;animation:progress-grow auto linear;animation-timeline:scroll(root);pointer-events:none}
+  @keyframes progress-grow{to{scale:1 1}}
+}
+
+/* ---------- 2. Reveal on scroll (uses the individual `translate` property so it never fights tilt's `transform`) ---------- */
+.js [data-reveal]{opacity:0;translate:0 28px;
+  transition:opacity .7s cubic-bezier(.2,.7,.2,1) var(--d,0ms),translate .7s cubic-bezier(.2,.7,.2,1) var(--d,0ms)}
+.js [data-reveal].in{opacity:1;translate:0 0}
+
+/* ---------- 3. Stats counters ---------- */
+.stat b{font-variant-numeric:tabular-nums;display:inline-block;min-width:1.4ch}
+
+/* ---------- 4. 3D tilt cards ---------- */
+.card.tilt{position:relative;transform-style:preserve-3d;will-change:transform;
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px))}
+.card.tilt:hover{--ty:-4px}
+.card.tilt .ic{transform:translateZ(34px)}
+.card.tilt h3{transform:translateZ(22px)}
+.card.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .2s;
+  background:radial-gradient(420px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.24),transparent 60%)}
+.card.tilt:hover::after{opacity:1}
+
+/* ---------- 5. Hero realism: layered parallax, grain, light rays, drifting clouds ---------- */
+.scene svg.bg{transform-origin:50% 100%;scale:1.12}          /* oversize so moving layers never show edges */
+.scene svg.bg [data-depth]{will-change:transform}
+.scene svg.bg .drift{animation:drift 70s ease-in-out infinite alternate}
+@keyframes drift{from{translate:-40px 0}to{translate:70px 0}}
+
+.scene::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.scene .rays{position:absolute;inset:-20%;z-index:-1;pointer-events:none;mix-blend-mode:screen;opacity:.9;
+  --sx:75%;--sy:38%;
+  background:repeating-conic-gradient(from 160deg at var(--sx) var(--sy),rgba(255,236,170,.12) 0 3deg,transparent 3deg 11deg);
+  -webkit-mask-image:radial-gradient(circle at var(--sx) var(--sy),#000 0,transparent 62%);
+          mask-image:radial-gradient(circle at var(--sx) var(--sy),#000 0,transparent 62%);
+  transform-origin:var(--sx) var(--sy);animation:rays 18s ease-in-out infinite alternate}
+@keyframes rays{from{rotate:-3deg;opacity:.65}to{rotate:3deg;opacity:1}}
+
+/* WebGL dust canvas (sits between the SVG and the text) */
+.scene canvas.hero-fx{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+
+/* ---------- 6. 3D product pack ---------- */
+.stage3d{position:relative;width:100%;aspect-ratio:1/1.05;max-height:600px;border-radius:24px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:var(--shadow);
+  background:radial-gradient(70% 55% at 50% 58%,var(--accent-soft),transparent 72%),var(--surface)}
+.stage3d canvas{display:block;width:100%;height:100%;opacity:0;transition:opacity .7s;cursor:grab;touch-action:pan-y}
+.stage3d.ready canvas{opacity:1}
+.stage3d.drag canvas{cursor:grabbing}
+.stage3d .hint{position:absolute;left:50%;bottom:14px;translate:-50% 0;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);pointer-events:none;transition:opacity .4s}
+.stage3d.touched .hint{opacity:0}
+/* once 3D is live, keep the HTML label for screen readers/SEO but hide it visually */
+.stack.has-3d > .pack{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---------- Motion safety ---------- */
+@media (prefers-reduced-motion: reduce){
+  .js [data-reveal]{opacity:1;translate:none;transition:none}
+  .scene svg.bg .drift,.scene .rays{animation:none}
+  .progress{display:none}
+}
