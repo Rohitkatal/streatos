@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /soon
+
+Sitemap: https://streatos.com/sitemap.xml
