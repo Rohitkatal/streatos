@@ -1,0 +1,59 @@
+/* header-tools.css - language switcher + theme icon button (the "util" pill in the header) */
+
+/* the white pill that holds [language | theme] */
+.util{display:flex;align-items:center;gap:2px;background:var(--surface);color:var(--fg);border:1px solid var(--line);
+  border-radius:12px;padding:4px;box-shadow:0 12px 30px -14px rgba(0,0,0,.5)}
+.util .sep{width:1px;height:22px;background:var(--line);margin-inline:2px}
+
+.lang{position:relative}
+.lang-btn,.icon-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:0;cursor:pointer;color:var(--fg);
+  font-weight:700;font-size:15.5px;line-height:1;padding:10px 12px;border-radius:9px;white-space:nowrap}
+.lang-btn>.i:first-child{color:var(--accent)}
+.lang-btn:hover,.icon-btn:hover,.lang-btn[aria-expanded="true"]{background:var(--alt)}
+.lang-btn .chev{width:15px;height:15px;transition:transform .15s}
+.lang-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.icon-btn{padding:10px}
+.icon-btn .i{width:20px;height:20px}
+
+/* theme icon: moon in light mode, sun in dark mode */
+.theme-btn .sun{display:none}
+:root[data-theme="dark"] .theme-btn .moon{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:inline}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme]) .theme-btn .moon{display:none}
+  :root:not([data-theme]) .theme-btn .sun{display:inline}
+}
+
+/* dropdown */
+.lang-panel{position:absolute;right:0;top:calc(100% + 12px);z-index:60;width:min(460px,calc(100vw - 32px));
+  background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:12px}
+.lang-note{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 12px 10px;margin:0;max-width:none}
+.lang-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;
+  max-height:min(58vh,430px);overflow:auto;overscroll-behavior:contain}
+.lang-list li{position:relative;display:flex;flex-direction:column;gap:2px;padding:9px 34px 9px 12px;border-radius:10px;cursor:pointer;line-height:1.25}
+.lang-list li b{font-weight:700;font-size:16.5px}
+.lang-list li span{font-size:13px;color:var(--muted)}
+.lang-list li:hover,.lang-list li:focus-visible{background:var(--alt)}
+.lang-list li[aria-selected="true"]{background:var(--accent-soft)}
+.lang-list li[aria-selected="true"]::after{content:"\2713";position:absolute;right:12px;top:10px;color:var(--accent);font-weight:800}
+.lang-list li[data-beta] span::after{content:" \00B7  beta";color:var(--accent)}
+.lang-foot{font-size:12.5px;color:var(--muted);padding:10px 12px 2px;margin:0;max-width:none}
+
+/* inline version used inside the mobile menu */
+.m-util{display:flex;gap:10px;align-items:flex-start;margin-top:16px}
+.m-util .lang{flex:1;min-width:0}
+.m-util .lang-btn,.m-util .icon-btn{border:1px solid var(--line)}
+.m-util .lang-btn{width:100%;justify-content:space-between}
+.m-util .lang-btn .lang-cur{margin-right:auto}
+.lang[data-inline] .lang-panel{position:static;width:100%;margin-top:8px;box-shadow:none}
+.lang[data-inline] .lang-list{max-height:40vh}
+
+/* toast for "not available" */
+.lang-toast{position:fixed;left:50%;bottom:24px;translate:-50% 0;z-index:300;max-width:min(92vw,460px);background:var(--deep);color:var(--deep-fg);
+  padding:12px 18px;border-radius:12px;font-size:15.5px;box-shadow:var(--shadow)}
+
+/* hide Google's own widget chrome - we use our own UI */
+#google_translate_element{position:absolute;left:-9999px;top:0;width:1px;height:1px;overflow:hidden}
+body{top:0 !important}
+iframe.skiptranslate,.goog-te-banner-frame,#goog-gt-tt,.goog-tooltip,.goog-te-balloon-frame{display:none !important}
+.goog-text-highlight{background:none !important;box-shadow:none !important}
