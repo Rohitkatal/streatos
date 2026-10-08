@@ -30,8 +30,9 @@ export function initForms() {
         fd.delete('company_website');
         fd.append('form', form.dataset.form);
         fd.append('page', location.href);
-        if (SITE.formAccessKey) {                                         // Web3Forms needs these two fields
-          fd.append('access_key', SITE.formAccessKey);
+        const key = (SITE.formAccessKeys && SITE.formAccessKeys[form.dataset.form]) || SITE.formAccessKey;   // per-form key, else the default
+        if (key) {                                                        // Web3Forms needs these fields
+          fd.append('access_key', key);
           if (!fd.get('subject')) fd.append('subject', 'Streatos: new vendor registration from ' + (fd.get('businessName') || fd.get('fullName') || 'website'));
           fd.append('from_name', 'Streatos website');
         }
