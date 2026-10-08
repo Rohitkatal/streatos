@@ -7,6 +7,7 @@ import { initValidation } from './components/validate.js';
 import { initForms }      from './components/forms.js';
 import { initBranches }   from './components/branches.js';
 import { initTeam }       from './components/team.js';
+import { initMotion }     from './components/motion.js';
 
 const safe = (name, fn) => { try { fn(); } catch (e) { console.warn(`[${name}] failed:`, e); } };
 
@@ -18,3 +19,4 @@ safe('validate', initValidation);   // before forms, so bad values block the sub
 safe('forms',    initForms);
 safe('branches', initBranches);
 safe('team',     initTeam);
+safe('motion',   initMotion);   // last, so it also sees the cards that team.js and branches.js add
