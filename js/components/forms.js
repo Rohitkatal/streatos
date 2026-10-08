@@ -1,14 +1,15 @@
-// Seller registration + contact forms: validation, honeypot spam trap, sending, friendly messages.
+// Vendor registration + contact forms: validation, honeypot spam trap, sending, friendly messages.
 import { SITE } from '../config.js';
 
 const MSG = {
-  seller:  ['Thank you for registering.', 'Our team will review your information and connect you with the appropriate Streatos branch for the next steps.'],
+  vendor:  ['Thank you for registering.', 'Our team will review your information and connect you with the appropriate Streatos branch for the next steps.'],
   contact: ['Thank you.', 'Your enquiry has been received.'],
 };
 
 export function initForms() {
   document.querySelectorAll('form[data-form]').forEach(form => {
     prefill(form);
+    if (!SITE.sendFiles) form.querySelectorAll('input[type=file]').forEach(f => (f.closest('.field') || f).remove());   // no uploads unless enabled
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const status = form.querySelector('.form-status');
@@ -29,6 +30,12 @@ export function initForms() {
         fd.delete('company_website');
         fd.append('form', form.dataset.form);
         fd.append('page', location.href);
+        if (SITE.formAccessKey) {                                         // Web3Forms needs these two fields
+          fd.append('access_key', SITE.formAccessKey);
+          if (!fd.get('subject')) fd.append('subject', 'Streatos: new vendor registration from ' + (fd.get('businessName') || fd.get('fullName') || 'website'));
+          fd.append('from_name', 'Streatos website');
+        }
+        if (!SITE.sendFiles) fd.delete('photos');
         const res = await fetch(SITE.formEndpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error('server answered ' + res.status);
         const [title, text] = MSG[form.dataset.form] || MSG.contact;

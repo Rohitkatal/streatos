@@ -8,7 +8,7 @@ Plain HTML + CSS + a little JavaScript. No frameworks, no build step.
 |------------------------------------------------|-----------------------------|
 | Set where the forms are sent                   | `settings/site.js`  (formEndpoint) |
 | Add phone numbers / emails / support hours     | `settings/site.js`  (contact) |
-| Point Shop, Restaurants, Mart, Track Order, Seller Login, Privacy, Terms, Refund, Shipping to real pages | `settings/site.js`  (links) |
+| Point Shop, Restaurants, Mart, Track Order, Vendor Login, Privacy, Terms, Refund, Shipping to real pages | `settings/site.js`  (links) |
 | Add / remove team members, add designations, photos, LinkedIn, hide phone or email | `settings/team.js` (photos go in `images/team/`) |
 | Add Streatos branches for "Find a Branch"      | `settings/branches.js` |
 | Change how mobile / PIN / GST / FSSAI / email are checked, their messages, or photo upload limits | `settings/validation.js` |
@@ -26,7 +26,7 @@ Forms need somewhere to send data. Use Formspree, Web3Forms or Netlify Forms (ea
 - `js/config.js` joins the settings for the code. Do not edit.
 - `js/components/` one small file per feature (theme, nav, language, forms, validate, branches, site-config)
 - `css/site.css` styles
-- `*.html` pages: index, about, team, sell, contact, soon, 404
+- `*.html` pages: index, about, team, vendor, contact, soon, 404
 
 ## Run locally
 `python3 -m http.server 8000` then open http://localhost:8000

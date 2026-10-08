@@ -22,7 +22,7 @@ export const TEAM = [
     photo: '',
     linkedin: 'https://www.linkedin.com/in/kunal-dalotra/',
     phone: '+91 8899883638',
-    email: 'kunaldalotra02@gmail.com',
+    email: 'marketing@streatos.com',
   },
   {
     name: 'Rupali Thakur',
@@ -31,7 +31,7 @@ export const TEAM = [
     photo: '',
     linkedin: 'https://www.linkedin.com/in/rupali-thakur-530014201/',
     phone: '+91 9682532516',
-    email: 'shallacommunity@gmail.com',
+    email: 'ceo@streatos.com',
   },
   {
     name: 'Rohit Singh',
@@ -40,7 +40,7 @@ export const TEAM = [
     photo: '',
     linkedin: 'https://www.linkedin.com/in/rohit-singh-it/',
     phone: '+91 6006517282',
-    email: 'rohitkatal466@gmail.com',
+    email: 'tech@streatos.com',
   },
   {
     name: 'Sajid Malik',
@@ -49,7 +49,7 @@ export const TEAM = [
     photo: '',
     linkedin: 'https://www.linkedin.com/in/sajid-malik-a6984b433/',
     phone: '+91 6005730781',
-    email: 'sajidmalik987827@gmail.com',
+    email: 'business@streatos.com',
   },
   {
     name: 'Shubhum Kumar',
@@ -58,6 +58,6 @@ export const TEAM = [
     photo: '',
     linkedin: '',
     phone: '+91 7051041411',
-    email: 'shubhum7raj@gmail.com',
+    email: 'support@streatos.com',
   },
 ];

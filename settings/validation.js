@@ -13,7 +13,7 @@ export const RULES = {
   email:  { pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$', message: 'Enter a valid email address.' },
 };
 
-// Product photo / catalogue upload limits (seller form)
+// Product photo / catalogue upload limits (vendor form)
 export const FILES = {
   maxFiles: 5,
   maxMB: 5,
