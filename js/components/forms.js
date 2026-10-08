@@ -30,7 +30,11 @@ export function initForms() {
         fd.delete('company_website');
         fd.append('form', form.dataset.form);
         fd.append('page', location.href);
-        const key = (SITE.formAccessKeys && SITE.formAccessKeys[form.dataset.form]) || SITE.formAccessKey;   // per-form key, else the default
+        const keys = SITE.formAccessKeys || {};
+        const business = keys.business || '';                              // key whose inbox is business@streatos.com
+        const role = fd.get('role');
+        const toBusiness = form.dataset.form === 'vendor' || (SITE.businessRoles || []).includes(role);
+        const key = (toBusiness && (keys.vendor && form.dataset.form === 'vendor' ? keys.vendor : business)) || SITE.formAccessKey;
         if (key) {                                                        // Web3Forms needs these fields
           fd.append('access_key', key);
           if (!fd.get('subject')) fd.append('subject', 'Streatos: new vendor registration from ' + (fd.get('businessName') || fd.get('fullName') || 'website'));
