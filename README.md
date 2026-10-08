@@ -33,3 +33,8 @@ Forms need somewhere to send data. Use Formspree, Web3Forms or Netlify Forms (ea
 
 ## Deploy (Cloudflare Pages)
 Build command: leave empty. Output directory: `/`. The repo root must contain index.html.
+
+## Product Stories (blog)
+- `stories.html` lists the stories; each story is its own page (`story-<name>.html`).
+- To add one: copy `_story-template.html` to `story-your-name.html`, replace the CAPITAL placeholders, delete the `noindex` line, add a card to `stories.html`, add the URL to `sitemap.xml`, push.
+- Only write facts you can confirm (place, people, uses). Use your own photos with a plain-words `alt` description.
