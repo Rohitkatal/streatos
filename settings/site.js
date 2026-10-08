@@ -5,8 +5,8 @@ export const SITE_SETTINGS = {
 
   // 1. FORMS - where the Vendor Registration and Contact forms are sent (POST).
   //    Paste the URL from Formspree, Web3Forms, Netlify Forms or your own Cloudflare function.
-  formEndpoint: '',          // Web3Forms:  'https://api.web3forms.com/submit'    Formspree: 'https://formspree.io/f/xxxxxxxx'
-  formAccessKey: '',         // Web3Forms only: the access key emailed to you. Leave '' for Formspree.
+  formEndpoint: 'https://api.web3forms.com/submit',          // Web3Forms:  'https://api.web3forms.com/submit'    Formspree: 'https://formspree.io/f/xxxxxxxx'
+  formAccessKey: '286360ad-1f7b-4d9b-829a-910e9db0fc37',         // Web3Forms only: the access key emailed to you. Leave '' for Formspree.
   sendFiles: false,          // false = the photo/catalogue upload is hidden (free form plans do not accept files).
                              // Set true only if your form service plan supports file uploads.
 
