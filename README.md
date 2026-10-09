@@ -38,3 +38,6 @@ Build command: leave empty. Output directory: `/`. The repo root must contain in
 - `stories.html` lists the stories; each story is its own page (`story-<name>.html`).
 - To add one: copy `_story-template.html` to `story-your-name.html`, replace the CAPITAL placeholders, delete the `noindex` line, add a card to `stories.html`, add the URL to `sitemap.xml`, push.
 - Only write facts you can confirm (place, people, uses). Use your own photos with a plain-words `alt` description.
+
+## Legal pages
+`privacy.html`, `terms.html`, `vendor-terms.html`, `refund.html`, `shipping.html`. Business name, address, GSTIN, grievance officer, refund window and delivery times are set in `settings/legal.js`. Footer links point to these pages by default. Have a lawyer review the wording before relying on it.

@@ -362,3 +362,12 @@ iframe.skiptranslate,.goog-te-banner-frame,#goog-gt-tt,.goog-tooltip,.goog-te-ba
 .story-more{margin-top:auto;padding:16px 0 22px;display:inline-flex;align-items:center;gap:6px;color:var(--green);font-weight:700;font-size:14.5px}
 .story-more .i{width:16px;height:16px}
 .hero .eyebrow{margin-bottom:10px}
+
+/* ---------- legal pages ---------- */
+.legal{max-width:780px;margin:0 auto}
+.legal p{max-width:none;font-size:16.5px;line-height:1.75;margin-top:12px}
+.legal h2{font-size:clamp(20px,2.3vw,26px);margin-top:34px}
+.legal ul{margin:12px 0 0;padding-left:22px;color:var(--muted);line-height:1.7}
+.legal li{margin-top:6px}.legal li b,.legal p b{color:var(--ink)}
+.legal a{color:var(--green);font-weight:600}
+.legal-updated{font-size:13px;font-weight:600;color:var(--muted);margin-top:0 !important}

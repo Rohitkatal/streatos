@@ -13,6 +13,14 @@ export function initSiteConfig() {
   });
   // a card/section whose contact lines were all empty keeps its text and button, so nothing else to do.
 
+  // legal-page details (settings/legal.js). Optional rows disappear when empty; numbers keep their default text.
+  document.querySelectorAll('[data-legal]').forEach(el => {
+    const val = String((SITE.legal || {})[el.dataset.legal] || '').trim();
+    if (!val) { const row = el.closest('[data-legal-row]'); if (row) row.remove(); return; }
+    el.textContent = val;
+    if (el.tagName === 'A') el.href = (el.dataset.kind === 'tel' ? 'tel:' + val.replace(/[^\d+]/g, '') : 'mailto:' + val);
+  });
+
   // platform links
   document.querySelectorAll('[data-link]').forEach(a => {
     const url = (SITE.links[a.dataset.link] || '').trim();
